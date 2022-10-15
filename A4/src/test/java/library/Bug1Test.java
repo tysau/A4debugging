@@ -72,7 +72,6 @@ public class Bug1Test {
         
         calendar.incrementDate(3);
         library.updateCurrentLoanStatus();        
-        System.out.println(library.listCurrentLoans());
 
         Mockito.doNothing().when(returnItemUI).setReady();
         
