@@ -1,19 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package library;
 
-import java.util.HashMap;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Map;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+
 import library.borrowitem.BorrowItemUI;
 import library.entities.Calendar;
 import library.entities.Item;
@@ -25,20 +23,7 @@ import library.payfine.PayFineControl;
 import library.payfine.PayFineUI;
 import library.returnItem.ReturnItemControl;
 import library.returnItem.ReturnItemUI;
-import org.junit.jupiter.api.function.Executable;
-import static org.mockito.ArgumentMatchers.anyDouble;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
-/**
- *
- * @author tysau
- */
 public class Bug1Test {
     
     Library library;
@@ -77,7 +62,7 @@ public class Bug1Test {
     }
 
     /**
-     * Test of incorrect late fee.
+     * Reproducing bug 1 - Incorrect late fee.
      */
     @Test
     public void testItem() {
@@ -103,6 +88,5 @@ public class Bug1Test {
                 " actual: " + patron.finesOwed());
 
         assertEquals(quotedFee, actualFee);
-    }
-    
+    } 
 }
