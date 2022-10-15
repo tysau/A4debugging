@@ -66,33 +66,33 @@ public class ReturnItemControl {
 
 
 	public void dischargeLoan(boolean isDamaged) {
-		if (!state.equals(ControlState.INSPECTING)) {
-			throw new RuntimeException("ReturnItemControl: cannot call dischargeLoan except in INSPECTING state");
-		}
+            if (!state.equals(ControlState.INSPECTING)) {
+		throw new RuntimeException("ReturnItemControl: cannot call dischargeLoan except in INSPECTING state");
+            }
 
-		double totalFines = 0.0;
-        double overDueFine = 0.0;
-        double damageFee = 0.0;
+            double totalFines = 0.0;
+            double overDueFine = 0.0;
+            double damageFee = 0.0;
         
-        if (isDamaged) {
-            damageFee = library.calculateDamageFee(isDamaged);
-            totalFines += damageFee;
-            ui.display(String.format("\nDamage fee : $%.2f", damageFee));
-        }
+            if (isDamaged) {
+                damageFee = library.calculateDamageFee(isDamaged);
+                totalFines += damageFee;
+                ui.display(String.format("\nDamage fee : $%.2f", damageFee));
+            }
         
-        if (currentLoan.isOverDue()) {
-            overDueFine = currentLoan.getFines();
-            totalFines += overDueFine;
-            ui.display(String.format("\nOverdue fine : $%.2f", overDueFine));
-        }
-        ui.display(String.format("\nTotal fines : $%.2f", totalFines));
+            if (currentLoan.isOverDue()) {
+                overDueFine = currentLoan.getFines();
+                totalFines += overDueFine;
+                ui.display(String.format("\nOverdue fine : $%.2f", overDueFine));
+            }
+            ui.display(String.format("\nTotal fines : $%.2f", totalFines));
         
-        currentLoan.getPatron().incurFine(totalFines);
-		library.dischargeLoan(currentLoan, isDamaged);
+            currentLoan.getPatron().incurFine(totalFines);
+            library.dischargeLoan(currentLoan, isDamaged);
 		
-		currentLoan = null;
-		ui.setReady();
-		state = ControlState.READY;				
+            currentLoan = null;
+            ui.setReady();
+            state = ControlState.READY;				
 	}
 
 
