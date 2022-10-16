@@ -4,7 +4,6 @@ package library;
 import library.borrowitem.BorrowItemControl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.mockito.Mock;
@@ -14,42 +13,32 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 import library.borrowitem.BorrowItemUI;
-import library.entities.Calendar;
 import library.entities.Item;
 import library.entities.ItemType;
 import library.entities.Library;
-import library.entities.Loan;
 import library.entities.Patron;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 
 public class Bug2Test {
-    
+
     Library library;
-    
-    Loan loan;
     Patron patron;
-//    Calendar calendar;
 
     Item item1;
     Item item2;
     Item item3;
     Item item4;
-
-    BorrowItemControl borrowItem;
     
     @Mock BorrowItemUI itemUI;
+    BorrowItemControl borrowItem;
     
     public Bug2Test() {
     }
-    
-   
+
     @BeforeEach
     public void setUp() {
-    
+    // Create a library, patron, items, and borrowItemUI/Control
         library = Library.getInstance();
     
         patron = library.addPatron("John", "Smith", "dotcom", 1234);
@@ -58,24 +47,21 @@ public class Bug2Test {
         item2 = library.addItem("Because", "Why", "2", ItemType.BOOK);
         item3 = library.addItem("Below", "Above", "3", ItemType.BOOK);
         item4 = library.addItem("Inside", "Outside", "4", ItemType.BOOK);
-        
-//        calendar = Calendar.getInstance();
 
         borrowItem = new BorrowItemControl();
         itemUI = spy(new BorrowItemUI(borrowItem));
-
     }
     
-    @AfterEach
+//    @AfterEach
     public void tearDown() {
+
     }
 
     /**
-     * Reproducing bug 1 - Incorrect late fee.
+     * Reproducing bug 2 - Patron can borrow more than 2 items.
      */
     @Test
-    public void testItem() {
-        
+    public void testBug2() {
         int expectedLoanTotal;
         int actualLoanTotal;
 
@@ -85,21 +71,55 @@ public class Bug2Test {
         Mockito.doNothing().when(itemUI).setCompleted();
         Mockito.doNothing().when(itemUI).display(any(Object.class));
         
-        borrowItem.cardSwiped(patron.getId());
         
+        // Attempt to borrow 3 items
+        borrowItem.cardSwiped(patron.getId());
+        borrowItem.itemScanned(5);
+        borrowItem.itemScanned(6);
+        borrowItem.itemScanned(7);
+        borrowItem.commitLoans();
+        
+        // Results
+        expectedLoanTotal = 2;
+        actualLoanTotal = patron.getNumberOfCurrentLoans();
+
+        assertEquals(expectedLoanTotal, actualLoanTotal);
+    } 
+    
+    /**
+     * Reproducing bug 2A - Patron can borrow additional item in later visit.
+     */
+    @Test
+        public void testBug2a() {
+        int expectedLoanTotal;
+        int actualLoanTotal;
+
+        Mockito.doNothing().when(itemUI).setReady();
+        Mockito.doNothing().when(itemUI).setScanning();
+        Mockito.doNothing().when(itemUI).setFinalising();
+        Mockito.doNothing().when(itemUI).setCompleted();
+        Mockito.doNothing().when(itemUI).display(any(Object.class));
+        
+        // Borrowing session 1
+        borrowItem.cardSwiped(patron.getId());   
         borrowItem.itemScanned(1);
         borrowItem.itemScanned(2);
         borrowItem.itemScanned(3);
         
         borrowItem.commitLoans();
         
-        
-        expectedLoanTotal = 2;
+        // Borriwing session 2
+        borrowItem = new BorrowItemControl();
+        itemUI = spy(new BorrowItemUI(borrowItem));
+
+        borrowItem.cardSwiped(patron.getId());
+        borrowItem.itemScanned(4);
+        borrowItem.commitLoans();
+  
+        // Results
+        expectedLoanTotal = 2;        
         actualLoanTotal = patron.getNumberOfCurrentLoans();
         
-        System.out.println("Loans, expected: " + expectedLoanTotal + 
-                " actual: " + actualLoanTotal);
-
         assertEquals(expectedLoanTotal, actualLoanTotal);
     } 
 }

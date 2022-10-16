@@ -75,7 +75,7 @@ public class Bug1Test {
 
         Mockito.doNothing().when(returnItemUI).setReady();
         
-        returnItem.itemScanned(1);
+        returnItem.itemScanned(item.getId());
         
         quotedFee = library.calculateOverDueFine(loan);
         
