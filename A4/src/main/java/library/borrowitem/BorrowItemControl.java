@@ -76,7 +76,7 @@ public class BorrowItemControl {
 		for (Item item : pendingList) {
 			ui.display(item);
 		}
-		if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() < 0) {
+		if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() <= 0) {
 			ui.display("Loan limit reached");
 			borrowingCompleted();
 		}
