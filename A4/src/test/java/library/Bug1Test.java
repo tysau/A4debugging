@@ -66,7 +66,7 @@ public class Bug1Test {
      */
     @Test
     public void testItem() {
-        
+        // Setup
         Double quotedFee;
         Double actualFee;
         
@@ -75,7 +75,8 @@ public class Bug1Test {
 
         Mockito.doNothing().when(returnItemUI).setReady();
         
-        returnItem.itemScanned(1);
+        // Act
+        returnItem.itemScanned(item.getId());
         
         quotedFee = library.calculateOverDueFine(loan);
         
@@ -83,6 +84,7 @@ public class Bug1Test {
         
         actualFee = patron.finesOwed();
         
+        // Assert / results
         System.out.println("fines, quoted: " + quotedFee + 
                 " actual: " + patron.finesOwed());
 

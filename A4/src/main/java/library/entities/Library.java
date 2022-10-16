@@ -152,7 +152,7 @@ public class Library implements Serializable {
 
 	
 	public boolean canPatronBorrow(Patron patron) {		
-		if (patron.getNumberOfCurrentLoans() == LOAN_LIMIT ) {
+		if (patron.getNumberOfCurrentLoans() >= LOAN_LIMIT ) {
 			return false;
 		}
 		if (patron.finesOwed() >= MAX_FINES_OWED) {
