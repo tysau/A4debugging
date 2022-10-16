@@ -76,13 +76,21 @@ public class Bug2Test {
         borrowItem.cardSwiped(patron.getId());
         borrowItem.itemScanned(5);
         borrowItem.itemScanned(6);
+        
+        try {
         borrowItem.itemScanned(7);
+        }
+        catch (Exception e) {
+        }
+        
         borrowItem.commitLoans();
         
         // Results
         expectedLoanTotal = 2;
         actualLoanTotal = patron.getNumberOfCurrentLoans();
-
+        System.out.println("Script 2.1 - Loans, expected: " + expectedLoanTotal + 
+                " Loans actual: " + actualLoanTotal); 
+        
         assertEquals(expectedLoanTotal, actualLoanTotal);
     } 
     
@@ -104,7 +112,13 @@ public class Bug2Test {
         borrowItem.cardSwiped(patron.getId());   
         borrowItem.itemScanned(1);
         borrowItem.itemScanned(2);
+        
+        try {
         borrowItem.itemScanned(3);
+        }
+        catch (Exception e) {
+        }
+//        borrowItem.itemScanned(3);
         
         borrowItem.commitLoans();
         
@@ -113,12 +127,22 @@ public class Bug2Test {
         itemUI = spy(new BorrowItemUI(borrowItem));
 
         borrowItem.cardSwiped(patron.getId());
+        
+        try {
         borrowItem.itemScanned(4);
         borrowItem.commitLoans();
+        }
+        catch (Exception e) {
+        }
+        
+//        borrowItem.itemScanned(4);
+        
   
         // Results
         expectedLoanTotal = 2;        
         actualLoanTotal = patron.getNumberOfCurrentLoans();
+        System.out.println("Script 2.2 - Loans, expected: " + expectedLoanTotal + 
+                " Loans actual: " + actualLoanTotal);  
         
         assertEquals(expectedLoanTotal, actualLoanTotal);
     } 
