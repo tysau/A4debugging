@@ -23,7 +23,10 @@ import library.payfine.PayFineControl;
 import library.payfine.PayFineUI;
 import library.returnItem.ReturnItemControl;
 import library.returnItem.ReturnItemUI;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class Bug1Test {
     
     Library library;
@@ -32,10 +35,9 @@ public class Bug1Test {
     Patron patron;
     Calendar calendar;
     Item item;
-    ReturnItemControl returnItem;
-    PayFineControl payFine;
     
     @Mock ReturnItemUI returnItemUI;
+    ReturnItemControl returnItem;
     
     public Bug1Test() {
     }
@@ -51,10 +53,8 @@ public class Bug1Test {
         calendar = Calendar.getInstance();
         loan = library.issueLoan(item, patron);
         
-        
         returnItem = new ReturnItemControl();
-        returnItemUI = new ReturnItemUI(returnItem);
-//        returnItem.setUi(returnItemUI);
+        returnItem.setUi(returnItemUI);
     }
     
     @AfterEach
@@ -70,9 +70,7 @@ public class Bug1Test {
         Double quotedFee;
         Double actualFee;
         calendar.incrementDate(3);
-        library.updateCurrentLoanStatus();    
-//        doNothing().when(returnItemUI).setReady();
-                
+        library.updateCurrentLoanStatus();         
       
         // Act
         returnItem.itemScanned(item.getId());
