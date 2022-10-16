@@ -58,10 +58,11 @@ public class Bug2Test {
     }
 
     /**
-     * Reproducing bug 2 - Patron can borrow more than 2 items.
+     * Reproducing bug 2.1 - Patron can borrow more than 2 items.
      */
     @Test
     public void testBug2() {
+        // Setup
         int expectedLoanTotal;
         int actualLoanTotal;
 
@@ -71,21 +72,21 @@ public class Bug2Test {
         Mockito.doNothing().when(itemUI).setCompleted();
         Mockito.doNothing().when(itemUI).display(any(Object.class));
         
-        
+        // Act
         // Attempt to borrow 3 items
         borrowItem.cardSwiped(patron.getId());
         borrowItem.itemScanned(5);
         borrowItem.itemScanned(6);
         
         try {
-        borrowItem.itemScanned(7);
+            borrowItem.itemScanned(7);
         }
         catch (Exception e) {
         }
         
         borrowItem.commitLoans();
         
-        // Results
+        // Assert / Results
         expectedLoanTotal = 2;
         actualLoanTotal = patron.getNumberOfCurrentLoans();
         System.out.println("Script 2.1 - Loans, expected: " + expectedLoanTotal + 
@@ -98,7 +99,8 @@ public class Bug2Test {
      * Reproducing bug 2A - Patron can borrow additional item in later visit.
      */
     @Test
-        public void testBug2a() {
+    public void testBug2a() {
+        // Setup
         int expectedLoanTotal;
         int actualLoanTotal;
 
@@ -108,6 +110,7 @@ public class Bug2Test {
         Mockito.doNothing().when(itemUI).setCompleted();
         Mockito.doNothing().when(itemUI).display(any(Object.class));
         
+        // Act:
         // Borrowing session 1
         borrowItem.cardSwiped(patron.getId());   
         borrowItem.itemScanned(1);
@@ -118,8 +121,6 @@ public class Bug2Test {
         }
         catch (Exception e) {
         }
-//        borrowItem.itemScanned(3);
-        
         borrowItem.commitLoans();
         
         // Borriwing session 2
@@ -134,11 +135,8 @@ public class Bug2Test {
         }
         catch (Exception e) {
         }
-        
-//        borrowItem.itemScanned(4);
-        
   
-        // Results
+        // Assert / Results
         expectedLoanTotal = 2;        
         actualLoanTotal = patron.getNumberOfCurrentLoans();
         System.out.println("Script 2.2 - Loans, expected: " + expectedLoanTotal + 
