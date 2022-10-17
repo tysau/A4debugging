@@ -7,12 +7,11 @@ Both System Test files are in this directory:
 
 - <a href="https://github.com/tysau/A4debugging/tree/main/BugReports" target="_blank">\BugReports</a> 
    
-Download word documents:
+Download System test documents:
 - <a href="https://github.com/tysau/A4debugging/blob/main/BugReports/Bug1SystemTest.pdf" target="_blank">Link to Bug#1 System test</a>
 - <a href="https://github.com/tysau/A4debugging/blob/main/BugReports/Bug2SystemTest.pdf" target="_blank">Link to Bug#2 System test</a>    
    
 
-</br>
 
 ## Bug reports for both bugs:
 <p>The bug reports contain the hypothesis, test, result trail and also the fix details.</p>
