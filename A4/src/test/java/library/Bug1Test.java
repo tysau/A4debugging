@@ -72,7 +72,7 @@ public class Bug1Test {
         actualFee = patron.finesOwed();
         
         // Assert / results
-        System.out.println("fines expected: 1.0 " + quotedFee + 
+        System.out.println("fines expected: " + quotedFee + 
                 " actual: " + patron.finesOwed());
 
         assertEquals(quotedFee, actualFee);
