@@ -47,11 +47,6 @@ Links to fixes:
 *  <a href="https://github.com/tysau/A4debugging/commit/e31d5f11f29809e9abfa33d5e66d05e91b363a5c" target="_blank">Bug # 1 fix deployed</a>   
 * <a href="https://github.com/tysau/A4debugging/commit/96894c247b36bfb93abcc4a75355a1cc0802b15c" target="_blank">Bug # 2 fix deployed</a>
 
-Links to fixes:
-
-*  <a href="https://github.com/tysau/A4debugging/commit/e31d5f11f29809e9abfa33d5e66d05e91b363a5c">Bug # 1 fix deployed</a>   
-* <a href="https://github.com/tysau/A4debugging/commit/96894c247b36bfb93abcc4a75355a1cc0802b15c">Bug # 2 fix deployed</a>
-
   
     
     
