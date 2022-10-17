@@ -1,48 +1,38 @@
 package library;
 
-
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import library.borrowitem.BorrowItemUI;
 import library.entities.Calendar;
 import library.entities.Item;
 import library.entities.ItemType;
 import library.entities.Library;
 import library.entities.Loan;
 import library.entities.Patron;
-import library.payfine.PayFineControl;
-import library.payfine.PayFineUI;
 import library.returnItem.ReturnItemControl;
 import library.returnItem.ReturnItemUI;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+
 
 @ExtendWith(MockitoExtension.class)
 public class Bug1Test {
     
     Library library;
-    
     Loan loan;
     Patron patron;
     Calendar calendar;
     Item item;
-    
     @Mock ReturnItemUI returnItemUI;
     ReturnItemControl returnItem;
     
     public Bug1Test() {
     }
     
-   
     @BeforeEach
     public void setUp() {
         // Create library, patron, item, calendar, loan, returnItem control
@@ -82,7 +72,7 @@ public class Bug1Test {
         actualFee = patron.finesOwed();
         
         // Assert / results
-        System.out.println("fines, quoted: " + quotedFee + 
+        System.out.println("fines expected: 1.0 " + quotedFee + 
                 " actual: " + patron.finesOwed());
 
         assertEquals(quotedFee, actualFee);

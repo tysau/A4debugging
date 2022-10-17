@@ -1,25 +1,21 @@
 package library;
 
 
-import library.borrowitem.BorrowItemControl;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
-
-import library.borrowitem.BorrowItemUI;
-import library.entities.Item;
-import library.entities.ItemType;
-import library.entities.Library;
-import library.entities.Patron;
-import org.junit.jupiter.api.extension.ExtendWith;
-import static org.mockito.ArgumentMatchers.any;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import library.entities.Item;
+import library.entities.Patron;
+import library.entities.Library;
+import library.entities.ItemType;
+import library.borrowitem.BorrowItemUI;
+import library.borrowitem.BorrowItemControl;
 
 @ExtendWith(MockitoExtension.class)
 public class Bug2Test {
