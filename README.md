@@ -35,14 +35,16 @@ Test code in this directory - there is 1 test file for each bug:
 
 
 ## Links to important commits:
-Links to bug test code:
+Links to bug test code commits:
 
 - <a href="https://github.com/tysau/A4debugging/commit/3d4fa4ee8c0c8c17fd68b2601ce3b87fc819b656#diff-947e6dafc4b33467863c1f4612b1285ace7aeeb574fe08144d085df960decd31" target="_blank">Bug 1 test code first added</a>
 -  <a href="https://github.com/tysau/A4debugging/commit/afb49c18567ef39cc3a4238bf3ac75d8ff045b9a" target="_blank">Bug 1 test code refactored</a>
+- <a href="https://github.com/tysau/A4debugging/commit/2ff13995c57b711c258b703bcbba2366620952cb" target="_blank">Bug 1 Final commit for test code</a>
 -  <a href="https://github.com/tysau/A4debugging/commit/a4687e2211363de3689cf4d4df1929fe4cd5cd54" target="_blank">Bug 2 test code first added</a>
 -  <a href="https://github.com/tysau/A4debugging/commit/afb49c18567ef39cc3a4238bf3ac75d8ff045b9a#diff-16630fe650e403dc676b87b27c2edfd55837a6915b9021a6ce99f85ecf6db069" target="_blank">Bug 2 test code refactored</a>
+- <a href="https://github.com/tysau/A4debugging/commit/8efbe7efa727d6e534bf6cb809f06bd3a1d5e77a" target="_blank">Bug 2 Final commit for test code</a>
 
-Links to fixes:
+Links to fix commits:
 
 *  <a href="https://github.com/tysau/A4debugging/commit/e31d5f11f29809e9abfa33d5e66d05e91b363a5c" target="_blank">Bug # 1 fix deployed</a>   
 * <a href="https://github.com/tysau/A4debugging/commit/96894c247b36bfb93abcc4a75355a1cc0802b15c" target="_blank">Bug # 2 fix deployed</a>
